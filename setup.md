@@ -18,7 +18,8 @@ Installation Commands
     export PATH=$PATH:$JAVA_HOME/jre/bin
 
     
+To run a sample file test.py
 
-    
+    spark-submit test.py
     
 
