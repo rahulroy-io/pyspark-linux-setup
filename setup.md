@@ -1,5 +1,43 @@
 https://towardsdatascience.com/installing-pyspark-with-java-8-on-ubuntu-18-04-6a9dea915b5b
 
+download docker file and run the file
+
+    docker run -it --name uspark -p 2200:22 ubuntu:latest
+
+dockerd → running
+
+start docker
+
+    docker start uspark
+
+login into docker
+
+    docker container attach uspark
+
+
+ssh setup on container
+
+    passwd root
+
+
+    apt install openssh-server
+
+
+    nano /etc/ssh/sshd_config
+    
+    #PermitRootLogin prohibit-password
+    PermitRootLogin Yes
+
+restart ssh server
+
+    service ssh restart
+
+from cmd or terminal connect
+
+    ssh root@localhost -p 2200
+    
+
+
 Installation Commands
 
     sudo apt install openjdk-8-jdk
