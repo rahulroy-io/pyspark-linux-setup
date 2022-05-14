@@ -38,7 +38,7 @@ from cmd or terminal connect
     
 
 
-Installation Commands
+Installation Commands in Docker Container shell
 
     sudo apt install openjdk-8-jdk
     mkdir hadoopSpark
