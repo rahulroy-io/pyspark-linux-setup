@@ -4,7 +4,7 @@ Installation Commands
 
     sudo apt install openjdk-8-jdk
     mkdir hadoopSpark
-    wget <get url from hadoop https://spark.apache.org/downloads.html >
+    wget <get url for spark hadoop https://spark.apache.org/downloads.html >
     sudo apt install python
     cd hadoopSpark
     tar -xvf hadoop-3.2.3.tar.gz
