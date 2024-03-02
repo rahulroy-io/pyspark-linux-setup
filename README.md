@@ -74,7 +74,7 @@ pyspark
 Fix
 ```bash
 pyspark
-# Add the following line in the interactive PySpark shell
+# Add the following line in terminal
 export SPARK_LOCAL_IP=127.0.0.1
 ```
 
@@ -86,7 +86,7 @@ docker run -it --name gluecontainer -p 2200:22 -v C:\Users\raulr\OneDrive\myProj
 
 ### delta lake setup
    - on terminal run the following commands `python3 -m pip install delta-spark`
-   - while initializing use the following
+   - while initializing spark use the following
 
     spark = SparkSession.builder\
             .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension") \
