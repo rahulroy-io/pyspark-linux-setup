@@ -78,13 +78,13 @@ pyspark
 export SPARK_LOCAL_IP=127.0.0.1
 ```
 
-### Glue Container Setup with inbuilt spark provided by AWS:
+### Glue Container Setup with builtin spark provided by AWS:
 - Run bellow in powershell/command line and make sure mounted path -> `OneDrive\myProjects\dockerBind\awsglue` is available and `port 2200` is avaialble
 ```bash
 docker run -it --name gluecontainer -p 2200:22 -v C:\Users\raulr\OneDrive\myProjects\dockerBind\awsglue:/home/glue_user/workspace/ amazon/aws-glue-libs:glue_libs_4.0.0_image_01
 ```
 
-### Additional setup steps for delta lake
+### delta lake setup
    - on terminal run the following commands `python3 -m pip install delta-spark`
    - while initializing use the following
 
