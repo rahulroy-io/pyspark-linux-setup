@@ -78,7 +78,8 @@ pyspark
 export SPARK_LOCAL_IP=127.0.0.1
 ```
 
-### Glue Container Setup with builtin spark provided by AWS:
+### [Glue Container Setup with builtin spark provided by AWS](https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-libraries.html#develop-local-python) :
+
 - Run bellow in powershell/command line and make sure mounted path -> `OneDrive\myProjects\dockerBind\awsglue` is available and `port 2200` is avaialble
 ```bash
 docker run -it --name gluecontainer -p 2200:22 -v C:\Users\raulr\OneDrive\myProjects\dockerBind\awsglue:/home/glue_user/workspace/ amazon/aws-glue-libs:glue_libs_4.0.0_image_01
@@ -97,6 +98,35 @@ sudo su
 <provide passwd>
 
 ```
+- jupyter server setup
+```bash
+nano /home/glue_user/jupyter/jupyter_start.sh
+#!/bin/bash
+# source /home/glue_user/.bashrc
+if [[ ! "$?" -eq 1 ]]; then
+    livy-server start
+    if [[ -z ${DISABLE_SSL} ]]; then
+        echo "Starting Jupyter with SSL"
+        jupyter lab --no-browser --ip=0.0.0.0 --allow-root --ServerApp.root_dir=/home/glue_user/workspace/jupyter_workspace/ --Serve$
+    else
+        echo "SSL Disabled"
+        jupyter lab --no-browser --ip=0.0.0.0 --allow-root --ServerApp.root_dir=/home/glue_user/workspace/jupyter_workspace/ --Serve$
+    fi
+fi
+```
+start Jupiter server with `bash /home/glue_user/jupyter/jupyter_start.sh` and goto loopback ip_address:port (https://127.0.0.1:8888/lab)
+- VSCode setup
+  connect to container using remote extension in VSCode, in command pallete search -> open workspace settings (JSON) -> Add bellow config JSON as described in aws documentation
+  ```bash
+  {
+    "python.analysis.extraPaths": [
+        "/home/glue_user/aws-glue-libs/PyGlue.zip",
+        "/home/glue_user/spark/python/lib/py4j-0.10.9-src.zip",
+        "/home/glue_user/spark/python/"
+    ]
+}
+  ```
+  
 ### delta lake setup
    - on terminal run the following commands `python3 -m pip install delta-spark`
    - while initializing spark use the following
