@@ -83,7 +83,20 @@ export SPARK_LOCAL_IP=127.0.0.1
 ```bash
 docker run -it --name gluecontainer -p 2200:22 -v C:\Users\raulr\OneDrive\myProjects\dockerBind\awsglue:/home/glue_user/workspace/ amazon/aws-glue-libs:glue_libs_4.0.0_image_01
 ```
+- setup sudo user in glue container -> use powershell to login into terminal as root `docker exec -u root -t -i 45bce70e325f /bin/bash` run the following commands in terminal
+```bash
+yum install -y passwd initscripts nano
+usermod -aG wheel glue_user
+sudo passwd glue_user 
+<provide passwd>
 
+yum install sudo
+
+su using glue_user 
+sudo su
+<provide passwd>
+
+```
 ### delta lake setup
    - on terminal run the following commands `python3 -m pip install delta-spark`
    - while initializing spark use the following
