@@ -156,6 +156,7 @@ export SPARK_LOCAL_IP=127.0.0.1
         - **Create a Database:**
           - Establish databases for on-premises (local) and default (S3).
           - Utilize local paths like "path/to/local/directory" for on-prem databases.
+          - eg. goto aws glue catalog create database as ```onprem``` and set path as ```/home/glue_user/workspace/data-engineering/data/target/tgt-save-as-table/save-as-table``` this path will precede over ```spark.sql.warehouse.dir``` local spark config
    
         - **Configure Database Paths:**
           - Set up local paths for on-prem databases.
