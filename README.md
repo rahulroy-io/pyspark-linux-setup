@@ -40,44 +40,6 @@ export SPARK_LOCAL_IP=127.0.0.1
 spark-submit test.py
 ```
 
-4. Common Issue
-```bash
-pyspark
-    Python 3.8.5 (default, Jul 28 2020, 12:59:40)
-    [GCC 9.3.0] on linux
-    Type "help", "copyright", "credits" or "license" for more information.
-    21/05/23 01:58:54 WARN Utils: Your hostname, DESKTOP-NVFBPT8 resolves to a loopback address: 127.0.0.1; using 192.168.137.1 instead (on interface eth0)
-    21/05/23 01:58:54 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
-    21/05/23 01:58:55 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-    Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
-    Setting default log level to "WARN".
-    To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
-    21/05/23 01:58:56 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
-    21/05/23 01:58:56 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
-    21/05/23 01:58:56 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
-    21/05/23 01:58:56 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
-    21/05/23 01:58:56 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
-    21/05/23 01:58:56 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
-    21/05/23 01:58:56 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
-    21/05/23 01:58:56 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
-    21/05/23 01:58:56 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
-    21/05/23 01:58:56 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
-    21/05/23 01:58:56 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
-    21/05/23 01:58:56 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
-    21/05/23 01:58:56 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
-    21/05/23 01:58:56 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
-    21/05/23 01:58:56 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
-    21/05/23 01:58:56 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
-    21/05/23 01:58:56 ERROR SparkContext: Error initializing SparkContext.
-    java.net.BindException: Cannot assign requested address: Service 'sparkDriver' failed after 16 retries (on a random free port)! Consider explicitly setting the appropriate       binding address for the service 'sparkDriver' (for example spark.driver.bindAddress for SparkDriver) to the correct binding address.
-```
-Fix
-```bash
-pyspark
-# Add the following line in terminal
-export SPARK_LOCAL_IP=127.0.0.1
-```
-
 ### [Glue Container Setup with builtin spark provided by AWS](https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-libraries.html#develop-local-python) :
 
 - Run bellow in powershell/command line and make sure mounted path -> `OneDrive\myProjects\dockerBind\awsglue` is available and `port 2200` is avaialble
@@ -124,7 +86,7 @@ start Jupiter server with `bash /home/glue_user/jupyter/jupyter_start.sh` and go
         "/home/glue_user/spark/python/lib/py4j-0.10.9-src.zip",
         "/home/glue_user/spark/python/"
     ]
-}
+  }
   ```
   
 ### delta lake setup
@@ -135,3 +97,66 @@ start Jupiter server with `bash /home/glue_user/jupyter/jupyter_start.sh` and go
             .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension") \
             .config("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog")\
             .appName('DML').getOrCreate()
+
+
+
+
+
+### Common Issue
+- ***after running ```pyspark``` command in terminal***
+```bash
+    Python 3.8.5 (default, Jul 28 2020, 12:59:40)
+    [GCC 9.3.0] on linux
+    Type "help", "copyright", "credits" or "license" for more information.
+    21/05/23 01:58:54 WARN Utils: Your hostname, DESKTOP-NVFBPT8 resolves to a loopback address: 127.0.0.1; using 192.168.137.1 instead (on interface eth0)
+    21/05/23 01:58:54 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+    21/05/23 01:58:55 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+    Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+    Setting default log level to "WARN".
+    To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+    21/05/23 01:58:56 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+    21/05/23 01:58:56 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+    21/05/23 01:58:56 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+    21/05/23 01:58:56 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+    21/05/23 01:58:56 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+    21/05/23 01:58:56 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+    21/05/23 01:58:56 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+    21/05/23 01:58:56 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+    21/05/23 01:58:56 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+    21/05/23 01:58:56 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+    21/05/23 01:58:56 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+    21/05/23 01:58:56 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+    21/05/23 01:58:56 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+    21/05/23 01:58:56 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+    21/05/23 01:58:56 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+    21/05/23 01:58:56 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+    21/05/23 01:58:56 ERROR SparkContext: Error initializing SparkContext.
+    java.net.BindException: Cannot assign requested address: Service 'sparkDriver' failed after 16 retries (on a random free port)! Consider explicitly setting the appropriate       binding address for the service 'sparkDriver' (for example spark.driver.bindAddress for SparkDriver) to the correct binding address.
+```
+Fix
+```bash
+pyspark
+# Add the following line in terminal
+export SPARK_LOCAL_IP=127.0.0.1
+```
+
+- ***Issue with Managed Tables:***
+  - Encountered an issue with managed tables where data was saved in a different location than specified by `spark.sql.warehouse.directory`.
+
+   - **Resolution Steps:**
+     1. **Understand Managed and Unmanaged Tables:**
+        - Differentiate between managed and unmanaged tables.
+        - Use `spark.sql.warehouse.directory` for specifying warehouse locations.
+   
+     2. **Path Precedence in Glue Container:**
+        - Be aware that Glue catalog metadata takes precedence over local configurations.
+        - This affects both managed and unmanaged tables, influencing data-saving locations.
+   
+     3. **Glue Container Setup Steps:**
+        - **Create a Database:**
+          - Establish databases for on-premises (local) and default (S3).
+          - Utilize local paths like "path/to/local/directory" for on-prem databases.
+   
+        - **Configure Database Paths:**
+          - Set up local paths for on-prem databases.
+          - Glue uses the database path to organize data, creating a structure for table names.
