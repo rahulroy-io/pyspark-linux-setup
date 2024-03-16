@@ -1,5 +1,10 @@
 ## PySpark Set Up using Docker Container and AWS Glue
 
+1. https://gallery.ecr.aws/glue/aws-glue-libs
+2. https://hub.docker.com/r/amazon/aws-glue-libs
+3. https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-libraries.html#develop-local-docker-image
+4. https://aws.amazon.com/blogs/big-data/develop-and-test-aws-glue-version-3-0-jobs-locally-using-a-docker-container/
+
 ### Steps to install ubuntu container and install pyspark
 **Ubuntu Container Setup:**
 1. `docker run -it --name uspark -p 2200:22 ubuntu:latest` download docker file and run the file
