@@ -93,10 +93,16 @@ start Jupiter server with `bash /home/glue_user/jupyter/jupyter_start.sh` and go
    - on terminal run the following commands `python3 -m pip install delta-spark`
    - while initializing spark use the following
 
-    spark = SparkSession.builder\
-            .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension") \
-            .config("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog")\
-            .appName('DML').getOrCreate()
+    from pyspark.sql import SparkSession
+    from pyspark.sql import functions as F
+    from pyspark.sql import types as T
+    from pyspark import SparkConf
+   
+    conf = SparkConf().setAppName("dmltest")
+    conf.set('spark.jars.packages', 'io.delta:delta-core_2.12:2.1.0')
+    conf.set("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension")
+    conf.set("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog")
+    conf.set("spark.delta.logStore.class", "org.apache.spark.sql.delta.storage.S3SingleDriverLogStore")
 
 
 
