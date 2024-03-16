@@ -99,9 +99,9 @@ start Jupiter server with `bash /home/glue_user/jupyter/jupyter_start.sh` and go
     from pyspark import SparkConf
    
     conf = SparkConf().setAppName("dmltest")
-    conf.set('spark.jars.packages', 'io.delta:delta-core_2.12:2.1.0')
-    conf.set("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension")
-    conf.set("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog")
+    conf.set('spark.jars.packages', 'io.delta:delta-core_2.12:2.1.0') # enables till dAPI level
+    conf.set("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension") # extends to spark.sql level without catalogging i.e. alwys have to file path
+    conf.set("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog") # provides ability to register in spark catalog as managed and unmanaged tables
     conf.set("spark.delta.logStore.class", "org.apache.spark.sql.delta.storage.S3SingleDriverLogStore")
 ```
 
