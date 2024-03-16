@@ -92,7 +92,7 @@ start Jupiter server with `bash /home/glue_user/jupyter/jupyter_start.sh` and go
 ### delta lake setup
    - on terminal run the following commands `python3 -m pip install delta-spark`
    - while initializing spark use the following
-
+   ```python
     from pyspark.sql import SparkSession
     from pyspark.sql import functions as F
     from pyspark.sql import types as T
@@ -103,8 +103,7 @@ start Jupiter server with `bash /home/glue_user/jupyter/jupyter_start.sh` and go
     conf.set("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension")
     conf.set("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog")
     conf.set("spark.delta.logStore.class", "org.apache.spark.sql.delta.storage.S3SingleDriverLogStore")
-
-
+```
 
 
 
