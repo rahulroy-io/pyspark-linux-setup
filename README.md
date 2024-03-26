@@ -49,7 +49,7 @@ spark-submit test.py
 
 - Run bellow in powershell/command line and make sure mounted path -> `OneDrive\myProjects\dockerBind\awsglue` is available and `port 2200` is avaialble
 ```bash
-docker run -it --name gluecontainer -p 2200:22 -v C:\Users\raulr\OneDrive\myProjects\dockerBind\awsglue:/home/glue_user/workspace/ amazon/aws-glue-libs:glue_libs_4.0.0_image_01
+docker run -it --name gluecontainer -p 2200:22 -p 8888:8888 --expose=8888 -v C:\Users\raulr\OneDrive\myProjects\dockerBind\awsglue:/home/glue_user/workspace/ amazon/aws-glue-libs:glue_libs_4.0.0_image_01
 ```
 - setup sudo user in glue container -> use powershell to login into terminal as root `docker exec -u root -t -i 45bce70e325f /bin/bash` run the following commands in terminal
 ```bash
@@ -81,7 +81,7 @@ if [[ ! "$?" -eq 1 ]]; then
     fi
 fi
 ```
-start Jupiter server with `bash /home/glue_user/jupyter/jupyter_start.sh` and goto loopback ip_address:port (https://127.0.0.1:8888/lab)
+start Jupiter server with `bash /home/glue_user/jupyter/jupyter_start.sh` or preffered `bash glue-notebook]$ jupyter lab --no-browser --ip=0.0.0.0 --allow-root --ServerApp.root_dir=/home/glue_user/workspace/glue-notebook` and goto http://loopback_or_host_ip_address:port/lab?token=somealphanumericvalue get token using `bash jupyter server list`
 - VSCode setup
   connect to container using remote extension in VSCode, in command pallete search -> open workspace settings (JSON) -> Add bellow config JSON as described in aws documentation
   ```bash
