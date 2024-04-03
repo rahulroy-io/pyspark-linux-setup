@@ -44,6 +44,12 @@ export SPARK_LOCAL_IP=127.0.0.1
 ```bash
 spark-submit test.py
 ```
+### [jupyter/pyspark-notebook](https://hub.docker.com/r/jupyter/pyspark-notebook/tags) :
+
+- Run bellow in powershell/command line and make sure mounted path -> `OneDrive\myProjects\dockerBind\awsglue` is available and `port 2600` is avaialble
+```bash
+docker run -d --name pyspark-notebook-container -p 2600:22 -p 2688:8888 --expose=8888 -v C:\Users\raulr\OneDrive\myProjects\dockerBind\awsglue:/home/jovyan/work jupyter/pyspark-notebook:latest
+```
 
 ### [Glue Container Setup with builtin spark provided by AWS](https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-libraries.html#develop-local-python) :
 
