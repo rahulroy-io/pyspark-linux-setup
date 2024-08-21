@@ -7,7 +7,7 @@
 
 ### Steps to install ubuntu container and install pyspark
 **Ubuntu Container Setup:**
-1. `docker run -it --name uspark -p 2200:22 ubuntu:latest` download docker file and run the file
+1. `docker run -it --name uspark -p 2200:22 ubuntu:latest` download docker file and run the file also `docker run -it --name uspark -p 2800:22 -v C:\Users\raulr\OneDrive\myProjects\dockerBind\linux\workdir:/home/ubuntu/ ubuntu:latest`
 2. `docker start uspark` Start Docker
 3. `docker container attach uspark` Login into Docker
 4. ssh setup on container
