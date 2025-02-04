@@ -57,7 +57,7 @@ docker run -d --name pyspark-notebook-container -p 2600:22 -p 2688:8888 --expose
 ```bash
 docker run -it --name gluecontainer -p 2200:22 -p 8888:8888 --expose=8888 -v C:\Users\raulr\OneDrive\myProjects\dockerBind\awsglue:/home/glue_user/workspace/ amazon/aws-glue-libs:glue_libs_4.0.0_image_01
 ```
-- setup sudo user in glue container -> use powershell to login into terminal as root `docker exec -u root -t -i 45bce70e325f /bin/bash` run the following commands in terminal
+- setup sudo user in glue container -> use powershell to login into terminal as root `docker exec -u root -t -i gluecontainer /bin/bash` run the following commands in terminal
 ```bash
 yum install -y passwd initscripts nano
 usermod -aG wheel glue_user
