@@ -1,9 +1,24 @@
-## PySpark Set Up using Docker Container and AWS Glue
+## PySpark Set Up using WSL, Docker Container and AWS Glue
 
 1. https://gallery.ecr.aws/glue/aws-glue-libs
 2. https://hub.docker.com/r/amazon/aws-glue-libs
 3. https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-libraries.html#develop-local-docker-image
 4. https://aws.amazon.com/blogs/big-data/develop-and-test-aws-glue-version-3-0-jobs-locally-using-a-docker-container/
+
+### Steps to install wsl-ubuntu container and install pyspark
+**wsl-ubuntu  Container Setup:**
+1. `wsl --install -d Ubuntu-24.04` download ubuntu
+2. install jdk `sudo apt install openjdk-8-jdk`  and under `sudo nano ~/.bashrc` append the following lines `export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"`
+4. micromamba setup
+   - `"${SHELL}" <(curl -L micro.mamba.pm/install.sh)` micromamba installation select all as yes
+   - `micromamba self-update`
+   - `micromamba activate` and under base `micromamba install jupyterlab`
+5. pyspark setup
+   - `micromamba create -n wsl-pyspark` setup micromamba pyspark env
+   - `micromamba activate wsl-pyspark` activate env
+   - `micromamba install pyspark` installing pyspark from source-forge channel
+   - `micromamba install ipykernel` setup micromamba pyspark env
+6. activate base `micromamba activate` and start jupyter lab `jupyter lab`
 
 ### Steps to install ubuntu container and install pyspark
 **Ubuntu Container Setup:**
